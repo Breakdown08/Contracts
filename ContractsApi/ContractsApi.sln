@@ -1,0 +1,34 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.4.33122.133
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ContractsApi", "ContractsApi.csproj", "{AA2872A8-8E1E-48DB-B27E-A0AACB061E2B}"
+	ProjectSection(ProjectDependencies) = postProject
+		{0BDDBE89-B2D1-4B37-AE07-635DB48945EF} = {0BDDBE89-B2D1-4B37-AE07-635DB48945EF}
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BaseLibrary", "..\BaseLibrary\BaseLibrary.csproj", "{0BDDBE89-B2D1-4B37-AE07-635DB48945EF}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{AA2872A8-8E1E-48DB-B27E-A0AACB061E2B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AA2872A8-8E1E-48DB-B27E-A0AACB061E2B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AA2872A8-8E1E-48DB-B27E-A0AACB061E2B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AA2872A8-8E1E-48DB-B27E-A0AACB061E2B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0BDDBE89-B2D1-4B37-AE07-635DB48945EF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0BDDBE89-B2D1-4B37-AE07-635DB48945EF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0BDDBE89-B2D1-4B37-AE07-635DB48945EF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0BDDBE89-B2D1-4B37-AE07-635DB48945EF}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {88F27EB7-E79A-4B0E-8CE8-CF4CB4445250}
+	EndGlobalSection
+EndGlobal
