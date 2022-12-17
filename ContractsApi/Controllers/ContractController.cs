@@ -88,7 +88,7 @@ namespace ContractsApi.Controllers
             try
             {
                 string libreOfficePath = //@"/usr/lib/libreoffice/program/soffice";
-                @"C:\Users\shestakov\Desktop\LibreOfficePortable\App\libreoffice\program\soffice.exe";
+                @"C:\Users\kirill\Desktop\LibreOfficePortable\App\libreoffice\program\soffice.exe";
                 ProcessStartInfo procStartInfo = new ProcessStartInfo(libreOfficePath, string.Format("--convert-to pdf --nologo {0}", Path));
                 procStartInfo.RedirectStandardOutput = true;
                 procStartInfo.UseShellExecute = false;
