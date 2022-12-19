@@ -19,15 +19,9 @@ namespace ContractsApi.Controllers
         }
         [HttpGet(Name = "GetTestStudent")]
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(StudentModel))]
-        public async Task<IActionResult> GetAsync()
+        public async Task<IEnumerable<StudentModel>> GetAsync()
         {
-            var items = await _service.GetStudentData();
-            if (items != null)
-            {
-                return (IActionResult)Results.Ok(items);
-            }
-
-            return NotFound();
+            return await _service.GetStudentData();
         }
     }
 }
