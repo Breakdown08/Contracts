@@ -42,14 +42,14 @@ namespace ContractsApi.Services
         }
 
 
-        public async Task<IEnumerable<StudentModel>> GetPayerData()
+        public async Task<IEnumerable<PayerModel>> GetPayerData()
         {
             try
             {
                 using var connection = new SqliteConnection($"Data Source=db.sqlite");
                 SQLitePCL.raw.SetProvider(new SQLitePCL.SQLite3Provider_e_sqlite3());
                 connection.Open();
-                return await connection.QueryAsync<StudentModel>(@"SELECT 
+                return await connection.QueryAsync<PayerModel>(@"SELECT 
                     'Иванов' LastName,
                     'Николай' FirstName,
                     'Михайлович' Patronymic,
@@ -85,7 +85,27 @@ namespace ContractsApi.Services
                     '234823480923409243908234908' ChildEKS,
                     '4382984239' ChildOKVED,
                     '23442334' ChildOKPO,
-                    '00000000000000000000111' ChildPurposePayment,
+                    '00000000000000000000111' ChildPurposePayment
+                    ");
+            }
+            catch (Exception)
+            {
+                return null;
+            }
+        }
+
+
+        public async Task<IEnumerable<UniversityModel>> GetUniversityData()
+        {
+            try
+            {
+                using var connection = new SqliteConnection($"Data Source=db.sqlite");
+                SQLitePCL.raw.SetProvider(new SQLitePCL.SQLite3Provider_e_sqlite3());
+                connection.Open();
+                return await connection.QueryAsync<UniversityModel>(@"SELECT 
+                    'Петров Петр Петрович' DirectorFullName,
+                    'Петров П.П.' DirectorShortName,
+                    'П.П. Петров' DirectorShortNameReverse
                     ");
             }
             catch (Exception)

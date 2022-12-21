@@ -47,10 +47,19 @@ namespace ContractsApi.Controllers
         public async Task<ContractModel> Get()
         {
             var contractData = new ContractModel();
-            var studentData = await _service.GetStudentData();
-            contractData.Student = studentData.FirstOrDefault();
+            var studentData = (await _service.GetStudentData()).FirstOrDefault();
+            var payerData = (await _service.GetPayerData()).FirstOrDefault();
+            var requisitesData = (await _service.GetRequisitesData()).FirstOrDefault();
+            var universityData = (await _service.GetUniversityData()).FirstOrDefault();
+            
+            universityData.Requisites = requisitesData;
+            
+            contractData.Student = studentData;
+            contractData.Payer = payerData;
+            contractData.University = universityData;
+            
             var result = TemplateBuilder.GenerateDocument(contractData);
             return result;
         }
-    } 
+    }
 }
