@@ -79,6 +79,7 @@ namespace ContractsApi.Services
                     'example3.gmail.com' ChildEmail,
                     '(88888) 1-11-11' ChildFax,
                     '312232323123213213' ChildINN,
+                    '31223232312' ChildKPP,
                     'УФК по Алтайскому краю (Рубцовскийинститут (филиал) АлтГУ л/с 3232232323232)' ChildUFK,
                     '12323131223123123' ChildBIK,
                     '203402984308942309842390824' ChildKS,

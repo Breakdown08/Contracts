@@ -12,6 +12,7 @@ namespace ContractsApi.Models
         public string? ChildEmail { get; set; }
         public string? ChildFax { get; set; }
         public string? ChildINN { get; set; }
+        public string? ChildKPP { get; set; }
         public string? ChildUFK { get; set; }
         public string? ChildBIK { get; set; }
         public string? ChildKS { get; set; }
