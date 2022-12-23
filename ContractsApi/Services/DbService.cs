@@ -18,6 +18,31 @@ namespace ContractsApi.Services
         //    _factory = factory;
         //}
 
+
+        public async Task<IEnumerable<ContractModel>> GetContractData()
+        {
+            try
+            {
+                using var connection = new SqliteConnection($"Data Source=db.sqlite");
+                SQLitePCL.raw.SetProvider(new SQLitePCL.SQLite3Provider_e_sqlite3());
+                connection.Open();
+                return await connection.QueryAsync<ContractModel>(@"SELECT 
+                    'Иванов' LastName,
+                    'Иван' FirstName,
+                    'Николаевич' Patronymic,
+                    'Алтайский край, г. Рубцовск, пр-т. Ленина 20-1' Address,
+                    'example@gmail.com' Email,
+                    '8-999-888-11-22' PhoneNumber,
+                    'Паспорт гражданина России, серия 0122, номер 1234567, выдан в отделе выдачи паспортов по Алтайскому краю в городе Рубцовске' Passport,
+                    '123456789123456789' INN");
+            }
+            catch (Exception)
+            {
+                return null;
+            }
+        }
+
+
         public async Task<IEnumerable<StudentModel>> GetStudentData()
         {
             try
@@ -80,6 +105,7 @@ namespace ContractsApi.Services
                     '(88888) 1-11-11' ChildFax,
                     '312232323123213213' ChildINN,
                     '31223232312' ChildKPP,
+                    '96795679537' ChildLS,
                     'УФК по Алтайскому краю (Рубцовскийинститут (филиал) АлтГУ л/с 3232232323232)' ChildUFK,
                     '12323131223123123' ChildBIK,
                     '203402984308942309842390824' ChildKS,
