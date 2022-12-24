@@ -43,6 +43,5 @@ namespace ContractsApi.BaseLibrary.Auth
             PayloadDataModel model = ParseJWTToModel(bearer);
             return model;
         }
-
     }
 }

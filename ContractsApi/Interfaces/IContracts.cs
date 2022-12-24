@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Threading.Tasks;
-using ContractsApi.Models;
+﻿using ContractsApi.Models;
 
 namespace ContractsApi.Interfaces
 {

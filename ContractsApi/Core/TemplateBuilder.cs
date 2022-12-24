@@ -30,6 +30,7 @@ namespace ContractsApi.Core
                 Process process = new Process() { StartInfo = procStartInfo };
                 process.Start();
                 process.WaitForExit();
+                Console.WriteLine(Path);
             }
             catch (Exception ex)
             {
@@ -57,10 +58,6 @@ namespace ContractsApi.Core
         }
         public static ContractModel GenerateDocument(ContractModel model)
         {
-            Console.WriteLine(GetAppRoot());
-            Console.WriteLine();
-            Console.WriteLine();
-            Console.WriteLine();
             io.File.Copy(io.Path.Join(GetAppRoot(),@"\Templates\template.docx"), io.Path.Join(GetAppRoot(), @"\Templates\templateCopy.docx"), true);
             try
             {
