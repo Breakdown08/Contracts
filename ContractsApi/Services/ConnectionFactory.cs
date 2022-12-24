@@ -18,6 +18,7 @@ namespace ContractsApi.Services
         public IDbConnection CreateConnection()
         {
             var connection = new SqliteConnection(_connectionString);
+            SQLitePCL.raw.SetProvider(new SQLitePCL.SQLite3Provider_e_sqlite3());
             connection.Open();
             return connection;
         }

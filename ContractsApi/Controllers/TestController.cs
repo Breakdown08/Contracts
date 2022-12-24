@@ -17,11 +17,11 @@ namespace ContractsApi.Controllers
         {
             _service = service;
         }
-        [HttpGet(Name = "GetTestStudent")]
-        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(StudentModel))]
-        public async Task<IEnumerable<StudentModel>> GetAsync()
+        [HttpGet(Name = "GetTest")]
+        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(UniversityModel))]
+        public async Task<IEnumerable<UniversityModel>> GetAsync()
         {
-            return await _service.GetStudentData();
+            return await _service.GetUniversityData();
         }
     }
 }

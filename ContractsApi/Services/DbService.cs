@@ -12,21 +12,20 @@ namespace ContractsApi.Services
 {
     public class DbService : IContracts
     {
-        //private readonly ConnectionFactory _factory;
-        //public DbService(ConnectionFactory factory)
-        //{
-        //    _factory = factory;
-        //}
+        private readonly ConnectionFactory _factory;
+        public DbService(ConnectionFactory factory)
+        {
+            _factory = factory;
+        }
 
 
         public async Task<IEnumerable<ContractModel>> GetContractData()
         {
             try
             {
-                using var connection = new SqliteConnection($"Data Source=db.sqlite");
-                SQLitePCL.raw.SetProvider(new SQLitePCL.SQLite3Provider_e_sqlite3());
-                connection.Open();
-                return await connection.QueryAsync<ContractModel>(@"SELECT 
+                using (IDbConnection dbcon = _factory.CreateConnection())
+                {
+                    var sql = @"SELECT 
                     'Иванов' LastName,
                     'Иван' FirstName,
                     'Николаевич' Patronymic,
@@ -34,10 +33,16 @@ namespace ContractsApi.Services
                     'example@gmail.com' Email,
                     '8-999-888-11-22' PhoneNumber,
                     'Паспорт гражданина России, серия 0122, номер 1234567, выдан в отделе выдачи паспортов по Алтайскому краю в городе Рубцовске' Passport,
-                    '123456789123456789' INN");
+                    '123456789123456789' INN";
+
+                    var result = await dbcon.QueryAsync<ContractModel>(sql);
+
+                    return result;
+                }
             }
-            catch (Exception)
+            catch (Exception e)
             {
+                Console.WriteLine(e);
                 return null;
             }
         }
@@ -47,10 +52,9 @@ namespace ContractsApi.Services
         {
             try
             {
-                using var connection = new SqliteConnection($"Data Source=db.sqlite");
-                SQLitePCL.raw.SetProvider(new SQLitePCL.SQLite3Provider_e_sqlite3());
-                connection.Open();
-                return await connection.QueryAsync<StudentModel>(@"SELECT 
+                using (IDbConnection dbcon = _factory.CreateConnection())
+                {
+                    var sql = @"SELECT 
                     'Иванов' LastName,
                     'Иван' FirstName,
                     'Николаевич' Patronymic,
@@ -58,10 +62,16 @@ namespace ContractsApi.Services
                     'example@gmail.com' Email,
                     '8-999-888-11-22' PhoneNumber,
                     'Паспорт гражданина России, серия 0122, номер 1234567, выдан в отделе выдачи паспортов по Алтайскому краю в городе Рубцовске' Passport,
-                    '123456789123456789' INN");
+                    '123456789123456789' INN";
+
+                    var result = await dbcon.QueryAsync<StudentModel>(sql);
+
+                    return result;
+                }
             }
-            catch (Exception)
+            catch (Exception e)
             {
+                Console.WriteLine(e);
                 return null;
             }
         }
@@ -71,10 +81,9 @@ namespace ContractsApi.Services
         {
             try
             {
-                using var connection = new SqliteConnection($"Data Source=db.sqlite");
-                SQLitePCL.raw.SetProvider(new SQLitePCL.SQLite3Provider_e_sqlite3());
-                connection.Open();
-                return await connection.QueryAsync<PayerModel>(@"SELECT 
+                using (IDbConnection dbcon = _factory.CreateConnection())
+                {
+                    var sql = @"SELECT 
                     'Иванов' LastName,
                     'Николай' FirstName,
                     'Михайлович' Patronymic,
@@ -82,10 +91,17 @@ namespace ContractsApi.Services
                     'example2@gmail.com' Email,
                     '8-999-777-33-44' PhoneNumber,
                     'Паспорт гражданина России, серия 0111, номер 7654321, выдан в отделе выдачи паспортов по Алтайскому краю в городе Рубцовске' Passport,
-                    '987654321555555555' INN");
+                    '987654321555555555' INN";
+
+
+                    var result = await dbcon.QueryAsync<PayerModel>(sql);
+
+                    return result;
+                }
             }
-            catch (Exception)
+            catch (Exception e)
             {
+                Console.WriteLine(e);
                 return null;
             }
         }
@@ -94,10 +110,9 @@ namespace ContractsApi.Services
         {
             try
             {
-                using var connection = new SqliteConnection($"Data Source=db.sqlite");
-                SQLitePCL.raw.SetProvider(new SQLitePCL.SQLite3Provider_e_sqlite3());
-                connection.Open();
-                return await connection.QueryAsync<RequisitesModel>(@"SELECT 
+                using (IDbConnection dbcon = _factory.CreateConnection())
+                {
+                    var sql = @"SELECT 
                     'Рубцовский институт (филиал) АлтГУ' ChildOrganizationName,
                     'Алтайский край, г. Рубцовск, пр-т. Ленина 200б' ChildAddress,
                     '(88888) 1-11-11' ChildPhone,
@@ -112,11 +127,16 @@ namespace ContractsApi.Services
                     '234823480923409243908234908' ChildEKS,
                     '4382984239' ChildOKVED,
                     '23442334' ChildOKPO,
-                    '00000000000000000000111' ChildPurposePayment
-                    ");
+                    '00000000000000000000111' ChildPurposePayment";
+
+                    var result = await dbcon.QueryAsync<RequisitesModel>(sql);
+
+                    return result;
+                }
             }
-            catch (Exception)
+            catch (Exception e)
             {
+                Console.WriteLine(e);
                 return null;
             }
         }
@@ -126,17 +146,21 @@ namespace ContractsApi.Services
         {
             try
             {
-                using var connection = new SqliteConnection($"Data Source=db.sqlite");
-                SQLitePCL.raw.SetProvider(new SQLitePCL.SQLite3Provider_e_sqlite3());
-                connection.Open();
-                return await connection.QueryAsync<UniversityModel>(@"SELECT 
+                using (IDbConnection dbcon = _factory.CreateConnection())
+                {
+                    var sql = @"SELECT 
                     'Петров Петр Петрович' DirectorFullName,
                     'Петров П.П.' DirectorShortName,
-                    'П.П. Петров' DirectorShortNameReverse
-                    ");
+                    'П.П. Петров' DirectorShortNameReverse";
+
+                    var result = await dbcon.QueryAsync<UniversityModel>(sql);
+
+                    return result;
+                }
             }
-            catch (Exception)
+            catch (Exception e)
             {
+                Console.WriteLine(e);
                 return null;
             }
         }

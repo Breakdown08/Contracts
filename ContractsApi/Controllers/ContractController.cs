@@ -2,25 +2,8 @@
 using System;
 using System.Threading.Tasks;
 using System.Net;
-//using WebCore.ApiBase.Infrastructure.ActionResult;
 using ContractsApi.Models;
 using ContractsApi.Interfaces;
-using ContractsApi.Services;
-using System.Linq;
-using System.IO;
-using System.Text.RegularExpressions;
-using DocumentFormat.OpenXml.Packaging;
-using DocumentFormat.OpenXml.Wordprocessing;
-using DocumentFormat.OpenXml;
-using System.IO.Packaging;
-using System.Xml.Linq;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Text;
-using System.IO.Compression;
-using HtmlToOpenXml;
-using System.Diagnostics.Contracts;
-using Microsoft.AspNetCore.Http.HttpResults;
 using ContractsApi.Core;
 
 namespace ContractsApi.Controllers
