@@ -11,12 +11,17 @@ namespace ContractsApi.Core
 {
     public static class TemplateBuilder
     {
+        public static string GetAppRoot()
+        {
+            var path = System.Reflection.Assembly.GetExecutingAssembly().Location;
+            var directory = System.IO.Path.GetDirectoryName(path);
+            return directory;
+        }
         public static void DMSDocToPdfMain(string Path, string EnvironmentDirectoryPath)
         {
             try
             {
-                string libreOfficePath = //@"/usr/lib/libreoffice/program/soffice";
-                @"C:\Program Files\LibreOffice\program\soffice.exe";
+                string libreOfficePath = @"C:\Program Files\LibreOffice\program\soffice.exe";
                 ProcessStartInfo procStartInfo = new ProcessStartInfo(libreOfficePath, string.Format("--convert-to pdf --nologo {0}", Path));
                 procStartInfo.RedirectStandardOutput = true;
                 procStartInfo.UseShellExecute = false;
@@ -52,10 +57,14 @@ namespace ContractsApi.Core
         }
         public static ContractModel GenerateDocument(ContractModel model)
         {
-            io.File.Copy(@"C:\Users\Kirill\Desktop\template.docx", @"C:\Users\Kirill\Desktop\templateCopy.docx", true);
+            Console.WriteLine(GetAppRoot());
+            Console.WriteLine();
+            Console.WriteLine();
+            Console.WriteLine();
+            io.File.Copy(io.Path.Join(GetAppRoot(),@"\Templates\template.docx"), io.Path.Join(GetAppRoot(), @"\Templates\templateCopy.docx"), true);
             try
             {
-                using (WordprocessingDocument wordDoc = WordprocessingDocument.Open(@"C:\Users\Kirill\Desktop\templateCopy.docx", true))
+                using (WordprocessingDocument wordDoc = WordprocessingDocument.Open(io.Path.Join(GetAppRoot(), @"\Templates\templateCopy.docx"), true))
                 {
                     HtmlConverter converter = new HtmlConverter(wordDoc.MainDocumentPart);
                     string docText = null;
@@ -86,10 +95,7 @@ namespace ContractsApi.Core
                     TemplateBuilder.ChangeBookmark(body, "ОКПО", model.University.Requisites.ChildOKPO);
                     TemplateBuilder.ChangeBookmark(body, "НазначениеПлатежа", model.University.Requisites.ChildPurposePayment);
                 }
-
-                //Close the handle explicitly.
-                //model = @"C:\Users\Kirill\Desktop\myPDFDocument";
-                DMSDocToPdfMain(@"C:\Users\Kirill\Desktop\templateCopy.docx", @"C:\Users\Kirill\Desktop");
+                DMSDocToPdfMain(io.Path.Join(GetAppRoot(), @"\Templates\templateCopy.docx"), io.Path.Join(GetAppRoot(), @"\Output"));
                 return model;
             }
             catch (Exception e)

@@ -11,7 +11,5 @@ namespace ContractsApi.Models
         public string? CurrentAmount { get; set; }
         public string? TotalAmount { get; set; }
         public DateOnly? DateRectorOrder { get; set; }
-        public string? Template { get; set; }
-        public string? Template { get; set; }
     }
 }
