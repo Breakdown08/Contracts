@@ -30,7 +30,6 @@ namespace ContractsApi.Core
                 Process process = new Process() { StartInfo = procStartInfo };
                 process.Start();
                 process.WaitForExit();
-                Console.WriteLine(Path);
             }
             catch (Exception ex)
             {
@@ -56,12 +55,13 @@ namespace ContractsApi.Core
                 Console.WriteLine("error");
             }
         }
-        public static ContractModel GenerateDocument(ContractModel model)
+        public static string GenerateDocument(ContractModel model)
         {
-            io.File.Copy(io.Path.Join(GetAppRoot(),@"\Templates\template.docx"), io.Path.Join(GetAppRoot(), @"\Templates\templateCopy.docx"), true);
+            const string doc = "ReadyContract.docx";
+            io.File.Copy(io.Path.Join(GetAppRoot(),@"\Templates\template.docx"), io.Path.Join(GetAppRoot(), @"\Templates\", doc), true);
             try
             {
-                using (WordprocessingDocument wordDoc = WordprocessingDocument.Open(io.Path.Join(GetAppRoot(), @"\Templates\templateCopy.docx"), true))
+                using (WordprocessingDocument wordDoc = WordprocessingDocument.Open(io.Path.Join(GetAppRoot(), @"\Templates\", doc), true))
                 {
                     HtmlConverter converter = new HtmlConverter(wordDoc.MainDocumentPart);
                     string docText = null;
@@ -92,8 +92,9 @@ namespace ContractsApi.Core
                     TemplateBuilder.ChangeBookmark(body, "ОКПО", model.University.Requisites.ChildOKPO);
                     TemplateBuilder.ChangeBookmark(body, "НазначениеПлатежа", model.University.Requisites.ChildPurposePayment);
                 }
-                DMSDocToPdfMain(io.Path.Join(GetAppRoot(), @"\Templates\templateCopy.docx"), io.Path.Join(GetAppRoot(), @"\Output"));
-                return model;
+                var result = io.Path.Join(GetAppRoot(), @"\Output", doc);
+                DMSDocToPdfMain(io.Path.Join(GetAppRoot(), @"\Templates\", doc), io.Path.Join(GetAppRoot(), @"\Output"));
+                return result.Replace(".docx", ".pdf");
             }
             catch (Exception e)
             {

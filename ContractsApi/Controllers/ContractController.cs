@@ -5,6 +5,7 @@ using System.Net;
 using ContractsApi.Models;
 using ContractsApi.Interfaces;
 using ContractsApi.Core;
+using ContractsApi.BaseLibrary.Auth;
 
 namespace ContractsApi.Controllers
 {
@@ -27,7 +28,8 @@ namespace ContractsApi.Controllers
         [ProducesResponseType((int)HttpStatusCode.NotFound)]
         [ProducesResponseType((int)HttpStatusCode.BadRequest)]
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(ContractModel))]
-        public async Task<ContractModel> Get()
+        [AuthResult("Admin")]
+        public async Task<string> Get()
         {
             var contractData = new ContractModel();
             var studentData = (await _service.GetStudentData()).FirstOrDefault();
