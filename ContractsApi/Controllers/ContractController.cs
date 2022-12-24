@@ -28,7 +28,7 @@ namespace ContractsApi.Controllers
         [ProducesResponseType((int)HttpStatusCode.NotFound)]
         [ProducesResponseType((int)HttpStatusCode.BadRequest)]
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(ContractModel))]
-        [AuthResult("Admin")]
+        [AuthResult("SuperAdmin")]
         public async Task<string> Get()
         {
             var contractData = new ContractModel();
