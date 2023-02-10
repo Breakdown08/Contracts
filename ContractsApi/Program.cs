@@ -8,9 +8,15 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+
+//builder.Services.AddSingleton<ConnectionFactory>(provider =>
+//new ConnectionFactory(builder.Configuration["SQLiteConnectionString"]));
+//builder.Services.AddSingleton<IContracts, SQLiteService>();
+
 builder.Services.AddSingleton<ConnectionFactory>(provider =>
-                new ConnectionFactory(builder.Configuration["DataBaseName"]));
-builder.Services.AddSingleton<IContracts, DbService>();
+                new ConnectionFactory(builder.Configuration["OracleConnectionString"]));
+builder.Services.AddSingleton<IContracts, OracleService>();
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

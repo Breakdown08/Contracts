@@ -8,5 +8,6 @@ namespace ContractsApi.Interfaces
         Task<IEnumerable<PayerModel>> GetPayerData();
         Task<IEnumerable<UniversityModel>> GetUniversityData();
         Task<IEnumerable<RequisitesModel>> GetRequisitesData();
+        Task<IEnumerable<ContractModel>> GetContractData();
     }
 }

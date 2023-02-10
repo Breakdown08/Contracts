@@ -1,19 +1,13 @@
 ﻿using Dapper;
-using System;
-using System.Collections.Generic;
 using System.Data;
-using System.Linq;
-using System.Threading.Tasks;
 using ContractsApi.Interfaces;
 using ContractsApi.Models;
-using Microsoft.Data.Sqlite;
-using SQLitePCL;
 namespace ContractsApi.Services
 {
-    public class DbService : IContracts
+    public class SQLiteService : IContracts
     {
         private readonly ConnectionFactory _factory;
-        public DbService(ConnectionFactory factory)
+        public SQLiteService(ConnectionFactory factory)
         {
             _factory = factory;
         }
@@ -23,7 +17,7 @@ namespace ContractsApi.Services
         {
             try
             {
-                using (IDbConnection dbcon = _factory.CreateConnection())
+                using (IDbConnection dbcon = _factory.CreateConnection("test"))
                 {
                     var sql = @"SELECT 
                     'Иванов' LastName,
@@ -52,7 +46,7 @@ namespace ContractsApi.Services
         {
             try
             {
-                using (IDbConnection dbcon = _factory.CreateConnection())
+                using (IDbConnection dbcon = _factory.CreateConnection("test"))
                 {
                     var sql = @"SELECT 
                     'Иванов' LastName,
@@ -81,7 +75,7 @@ namespace ContractsApi.Services
         {
             try
             {
-                using (IDbConnection dbcon = _factory.CreateConnection())
+                using (IDbConnection dbcon = _factory.CreateConnection("test"))
                 {
                     var sql = @"SELECT 
                     'Иванов' LastName,
@@ -110,7 +104,7 @@ namespace ContractsApi.Services
         {
             try
             {
-                using (IDbConnection dbcon = _factory.CreateConnection())
+                using (IDbConnection dbcon = _factory.CreateConnection("test"))
                 {
                     var sql = @"SELECT 
                     'Рубцовский институт (филиал) АлтГУ' ChildOrganizationName,
@@ -146,7 +140,7 @@ namespace ContractsApi.Services
         {
             try
             {
-                using (IDbConnection dbcon = _factory.CreateConnection())
+                using (IDbConnection dbcon = _factory.CreateConnection("test"))
                 {
                     var sql = @"SELECT 
                     'Петров Петр Петрович' DirectorFullName,
